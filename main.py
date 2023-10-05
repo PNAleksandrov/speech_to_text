@@ -9,7 +9,7 @@ CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
-RECORD_SECONDS = 5
+RECORD_SECONDS = 5  # Время записи звука в секундах
 FILENAME = "recorded_audio.wav"
 
 p = pyaudio.PyAudio()
@@ -70,7 +70,7 @@ time.sleep(7)
 # Укажите ваш API-ключ и ссылку на аудиофайл в Object Storage.
 key = api
 
-filelink = 'https://storage.yandexcloud.net/bucket-apn1/recorded_audio.wav'
+file_url = 'https://storage.yandexcloud.net/bucket-apn1/recorded_audio.wav'
 
 POST = 'https://transcribe.api.cloud.yandex.net/speech/stt/v2/longRunningRecognize'
 
@@ -84,11 +84,11 @@ body = {
         }
     },
     "audio": {
-        "uri": filelink
+        "uri": file_url
     }
 }
 
-# Если вы хотите использовать IAM-токен для аутентификации, замените Api-Key на Bearer.
+# Аутентификации через Api Yandex.
 header = {'Authorization': 'Api-Key {}'.format(key)}
 
 # Отправить запрос на распознавание.
